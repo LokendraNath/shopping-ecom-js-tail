@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const checkoutDiv = document.getElementById("checkoutDiv");
   const cartListsDisplay = document.getElementById("cartListDisplay");
-
   const totalDisplay = document.getElementById("total-ammount");
   const cartEmptyDisplay = document.getElementById("empty-msg");
   const productCost = document.querySelector(".prduct-cost");
@@ -45,8 +44,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  cartListsDisplay.addEventListener("click", (e) => {
+    if (e.target.id === "delete-btn") {
+      const deleteId = parseInt(e.target.dataset.id);
+      cart = cart.filter((p) => p.id !== deleteId);
+      updateLocalStorage();
+      renderCart();
+    }
+  });
+
   function addToCart(product) {
-    cart.push(product);
+    const existingProduct = cart.find((p) => product.id === p.id);
+
+    if (!existingProduct) {
+      cart.push({ ...product, quantity: 1 });
+      console.log("cart is new");
+    } else {
+      console.log("cart is already");
+      existingProduct.quantity += 1;
+    }
     updateLocalStorage();
     renderCart();
   }
@@ -60,12 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
       cartEmptyDisplay.classList.add("hidden");
 
       cart.forEach((p) => {
-        totalCost += p.price;
+        totalCost += p.price * p.quantity;
+
         const cartItem = document.createElement("div");
+        cartItem.classList = "cartItem my-2 flex items-center justify-between";
         cartItem.innerHTML = `
-        ${p.name} - $${p.price}
+        <span> ${p.name} - $${p.price} </span> <span>Qnt: ${p.quantity} <button id="delete-btn" data-id="${p.id}" class="bg-red-700 px-2 rounded-xl text-sm text-white">Delete</button></span>
         `;
-        console.log(cartItem);
         cartListsDisplay.classList.remove("hidden");
         cartListsDisplay.appendChild(cartItem);
       });
