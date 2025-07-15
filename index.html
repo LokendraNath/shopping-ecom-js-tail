@@ -6,8 +6,43 @@
     <link rel="stylesheet" href="src/output.css" />
     <title>Expense Tracker</title>
   </head>
-  <body>
-    
+  <body class="min-h-screen flex items-center justify-center font-Poppins bg-[#020420]">
+    <div class="bg-white px-4 py-5 rounded-2xl flex flex-col">
+      <div class="product-sect">
+        <h2 class="text-3xl font-semibold font-josefin mb-3 tracking-wide">
+          Products
+        </h2>
+        <div
+          class="bg-gray-400 mb-2 py-2 px-4 rounded-2xl flex justify-between items-center gap-4"
+        >
+          Product 1 - $29.99
+          <button id="produ1" class="bg-yellow-500 py-1 px-4 rounded-2xl">Add To Cart</button>
+        </div>
+        <div
+          class="bg-gray-400 mb-2 py-2 px-4 rounded-2xl flex justify-between items-center gap-4"
+        >
+          Product 2 - $19.99
+          <button id="produ2" class="bg-yellow-500 py-1 px-4 rounded-2xl">Add To Cart</button>
+        </div>
+        <div
+          class="bg-gray-400 mb-2 py-2 px-4 rounded-2xl flex justify-between items-center gap-4"
+        >
+          Product 3 - $49.99
+          <button id="produ3" class="bg-yellow-500 py-1 px-4 rounded-2xl">Add To Cart</button>
+        </div>
+      </div>
+      <div class="cart-sec my-5 ">
+        <h2 class="text-3xl font-josefin font-semibold tracking-wide mb-3">Shopping Cart</h2>
+        <ul class="hidden">
+          <li>Product 1 - $19.99</li>
+        </ul>
+        <p class="font-caveat text-xl">Your Cart is Empty</p>
+      </div>
+      <div class="check-sec flex justify-end items-end flex-col">
+        <p id="total-ammount" class="px-5 text-lg mb-2">$34.00</p>
+        <button class="bg-yellow-500 w-32 py-1 px-2 rounded-2xl">Checkout</button>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
